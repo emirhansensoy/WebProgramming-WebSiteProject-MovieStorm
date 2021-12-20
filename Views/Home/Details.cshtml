@@ -1,7 +1,7 @@
-﻿@model Movie
+﻿@model MovieAndReviewsModel
 
 @{
-    ViewData["Title"] = "Details - " + Model.Title;
+    ViewData["Title"] = "Details - " + Model.Movie.Title;
 }
 
 <div class="row">
@@ -12,16 +12,77 @@
         <div class="card mb-3" style="margin-top:23px;">
             <div class="row no-gutters">
                 <div class="col-md-3">
-                    <img src="/img/@Model.ImageURL" alt="@Model.Description" class="card-img img-thumbnail" style="border:0;" />
+                    <img src="/img/@Model.Movie.ImageURL" alt="@Model.Movie.Description" class="card-img img-thumbnail" style="border:0;" />
                 </div>
                 <div class="col-md-9">
                     <div class="card-body">
-                        <h5 class="card-title">@Model.Title</h5>
-                        <p class="card-text">@Model.Description</p>
+                        <h5 class="card-title">@Model.Movie.Title</h5>
+                        <p class="card-text">@Model.Movie.Description</p>
                         <p class="card-text">
                             <small class="text-muted">3 days ago</small>
                         </p>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" >
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-light" style="margin-top:40px;">Reviews</h1>
+                    @if (Model.Reviews.Count() == 0)
+                    {
+                        <p class="text-left font-weight-bold" style="margin-right:10px;margin-top:10px;color:whitesmoke;">
+                            -This movie has no reviews.
+                        </p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.Reviews)
+                        {
+                            <div class="text-justify float-left img-thumbnail" style="background-color: white; margin-bottom:15px; width:100%;">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="font-weight-bold" style="margin-left:14px;margin-top:14px;">@item.UserName</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="text-right font-weight-bold" style="margin-right:10px;margin-top:10px;">
+                                            @item.Rating / 10 <img src="/img/star.png" alt="" style="height:15px; width:15px; margin-top:-5px;" />
+                                        
+                                    </div>
+                                </div>
+                                <p style="margin-left:14px;margin-right:14px;">@item.Comment</p>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form asp-controller="Home" asp-action="Details" id="algin-form" class="text-light">
+                        <div class="form-group">
+                            <h1 style="margin-top:80px;">Leave a review</h1>
+                            <label>Comment</label>
+                            <textarea asp-for="Review.Comment" cols="30" rows="5" class="form-control" style="width:550px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Rating</label>
+                            <br />
+                            <select asp-for="Review.Rating" class="custom-select" style="width:100px;">
+                                <option selected>Select rating</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="form-group"> <button type="submit" class="btn">Submit</button> </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using WebSite.Data;
 
 namespace WebSite.Controllers
@@ -21,9 +16,9 @@ namespace WebSite.Controllers
 
         public IActionResult Index()
         {
-            var userId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = User.FindFirstValue(ClaimTypes.Name);
 
-            return View(_context.Reviews.Where(i => i.UserId == userId).ToList());
+            return View(_context.Reviews.Where(i => i.UserName == userName).ToList());
         }
     }
 }

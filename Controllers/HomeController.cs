@@ -1,12 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Threading.Tasks;
 using WebSite.Data;
 using WebSite.Models;
 
@@ -25,7 +18,6 @@ namespace WebSite.Controllers
             return View();
         }
 
-
         public IActionResult Movies(int? id)
         {
             //var movies = MovieRepository.Movies;
@@ -38,12 +30,38 @@ namespace WebSite.Controllers
 
             return View(movies);
         }
+
+        [HttpGet]
         public IActionResult Details(int id)
         {
-            var movies = _context.Movies.ToList();
-            var movie = movies.Where(i => i.Id == id).First();
+            MovieAndReviewsModel model = new MovieAndReviewsModel();
 
-            return View(movie);
+            var movies = _context.Movies.ToList();
+            var movie = movies.First(i => i.Id == id);
+            
+            model.Movie = movie;
+            model.Reviews = _context.Reviews.Where(i => i.MovieId == movie.Id).ToList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Details(int id,Review review)
+        {
+            if (User.Identity != null) review.UserName = User.Identity.Name;
+            review.MovieId = id;
+            _context.Reviews.Add(review);
+            _context.SaveChanges();
+
+            MovieAndReviewsModel model = new MovieAndReviewsModel();
+
+            var movies = _context.Movies.ToList();
+            var movie = movies.First(i => i.Id == id);
+            
+            model.Movie = movie;
+            model.Reviews = _context.Reviews.Where(i => i.MovieId == movie.Id).ToList();
+
+            return View(model);
         }
     }
 }

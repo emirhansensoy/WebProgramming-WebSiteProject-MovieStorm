@@ -265,9 +265,6 @@ namespace WebSite.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Movies");
@@ -283,13 +280,13 @@ namespace WebSite.Data.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MovieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
                     b.Property<float>("Rating")
                         .HasColumnType("real");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -382,7 +379,9 @@ namespace WebSite.Data.Migrations
                 {
                     b.HasOne("WebSite.Models.Movie", null)
                         .WithMany("Reviews")
-                        .HasForeignKey("MovieId");
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebSite.Models.Movie", b =>

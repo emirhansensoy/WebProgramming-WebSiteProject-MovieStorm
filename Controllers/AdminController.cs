@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using WebSite.Data;
 using WebSite.Models;
 
 namespace WebSite.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         
@@ -28,10 +26,12 @@ namespace WebSite.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Role role)
         {
             var roleExist = await _roleManager.RoleExistsAsync(role.RoleName);
+
             if(!roleExist)
             {
                 var result = await _roleManager.CreateAsync(new IdentityRole(role.RoleName));
             }
+
             return View();
         }
     }

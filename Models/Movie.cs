@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace WebSite.Models
 {
@@ -23,7 +19,5 @@ namespace WebSite.Models
         public float MovieStormRating { get; set; }
 
         public List<Review> Reviews { get; set; }
-
-        public int UserId { get; set; }
     }
 }
