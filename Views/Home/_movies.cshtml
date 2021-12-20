@@ -1,0 +1,25 @@
+﻿@model List<Movie>
+
+<div class="row" style="margin-bottom:23px">
+    <div class="col-md-12">
+        <div class="card-deck">
+            @foreach (var movie in Model)
+            {
+                <div class="col-md-3 text-center" style="margin-top: 23px;">
+                    <div class="card h-100" style="margin-bottom:-20px; width:12rem;">
+                        <a asp-action="Details" asp-controller="Home" asp-route-id="@movie.Id">
+                            <img class="card-img-top img-thumbnail" src="/img/@movie.ImageURL" alt="@movie.Description" style="border: 0; height:250px;">
+                            <div class="card-body">
+                                <p class="card-title" style="margin-top:-15px; font-size:16px">@movie.Title</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
