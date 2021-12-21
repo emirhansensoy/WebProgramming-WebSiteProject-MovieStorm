@@ -35,9 +35,8 @@ namespace WebSite.Controllers
         public IActionResult Details(int id)
         {
             MovieAndReviewsModel model = new MovieAndReviewsModel();
-
-            var movies = _context.Movies.ToList();
-            var movie = movies.First(i => i.Id == id);
+            
+            var movie = _context.Movies.First(i => i.Id == id); 
             
             model.Movie = movie;
             model.Reviews = _context.Reviews.Where(i => i.MovieId == movie.Id).ToList();
@@ -62,6 +61,15 @@ namespace WebSite.Controllers
             model.Reviews = _context.Reviews.Where(i => i.MovieId == movie.Id).ToList();
 
             return View(model);
+        }
+        
+        public IActionResult Delete(int id)
+        {
+            var _review = _context.Reviews.Find(id);
+            _context.Reviews.Remove(_review);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", "Home", new { id = _review.MovieId });
         }
     }
 }
