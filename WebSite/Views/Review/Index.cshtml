@@ -1,0 +1,59 @@
+﻿@model MovieAndReviewsModel
+
+
+@{
+    ViewData["Title"] = "My Reviews";
+}
+
+
+@if (!Model.Reviews.Any())
+{
+    <div class="row">
+        <div class="col-md-12" style="margin-top: 50px;">
+            <h5 class="text-light">You do not have any reviews.</h5>
+        </div>
+    </div>
+}
+else
+{
+    @foreach (var x in Model.Movies)
+    {
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 text-right">
+                    <img src="/img/@x.ImageURL" alt="" class="img-thumbnail" style="width: 13rem; margin-bottom: 75px" />
+                </div>
+                <div class="col-md-9 text-left">
+                    @foreach (var y in Model.Reviews)
+                    {
+                        if (y.MovieId == x.Id)
+                        {
+                            <div class="text-justify img-thumbnail" style="background-color: white; margin-bottom:15px; width:100%;">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h5 class="font-weight-bold" style="margin-left:14px;margin-top:14px;">@y.UserName</h5>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <p class="text-right font-weight-bold" style="margin-right:10px;margin-top:10px;">
+                                            @y.Rating / 10
+                                            <img src="/img/star.png" alt="" style="height:15px; width:15px; margin-top:-5px;" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p style="margin-left:14px;margin-right:14px; ">@y.Comment</p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="/Home/DeleteFromMyReviews/@y.Id" class="btn" style="width: 80px; height: 40px; margin-top: -5px; margin-left: 20px;">
+                                            <p style="margin-top: -6px;">Delete</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
