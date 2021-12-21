@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using WebSite.Data;
 using WebSite.Models;
 using Microsoft.AspNetCore.Mvc.Localization;
@@ -33,7 +32,7 @@ namespace WebSite.Controllers
             ViewData["Update"] = _localizer["Update"];
             ViewData["Details"] = _localizer["Details"];
             ViewData["Delete"] = _localizer["Delete"];
-            ViewData["Title"] = _localizer["Title"];
+            ViewData["MovieTitle"] = _localizer["MovieTitle"];
             ViewData["Description"] = _localizer["Description"];
             ViewData["ImageURL"] = _localizer["ImageURL"];
             ViewData["CategoryId"] = _localizer["CategoryId"];
@@ -48,7 +47,7 @@ namespace WebSite.Controllers
         {
             ViewData["AddMovie"] = _localizer["AddMovie"];
             ViewData["BackToList"] = _localizer["BackToList"];
-            ViewData["Title"] = _localizer["Title"];
+            ViewData["MovieTitle"] = _localizer["MovieTitle"];
             ViewData["Description"] = _localizer["Description"];
             ViewData["ImageURL"] = _localizer["ImageURL"];
             ViewData["CategoryId"] = _localizer["CategoryId"];
@@ -64,7 +63,7 @@ namespace WebSite.Controllers
         {
             ViewData["AddMovie"] = _localizer["AddMovie"];
             ViewData["BackToList"] = _localizer["BackToList"];
-            ViewData["Title"] = _localizer["Title"];
+            ViewData["MovieTitle"] = _localizer["MovieTitle"];
             ViewData["Description"] = _localizer["Description"];
             ViewData["ImageURL"] = _localizer["ImageURL"];
             ViewData["CategoryId"] = _localizer["CategoryId"];
@@ -93,7 +92,7 @@ namespace WebSite.Controllers
             ViewData["UpdateMovie"] = _localizer["UpdateMovie"];
             ViewData["BackToList"] = _localizer["BackToList"];
             ViewData["Save"] = _localizer["Save"];
-            ViewData["Title"] = _localizer["Title"];
+            ViewData["MovieTitle"] = _localizer["MovieTitle"];
             ViewData["Description"] = _localizer["Description"];
             ViewData["ImageURL"] = _localizer["ImageURL"];
             ViewData["CategoryId"] = _localizer["CategoryId"];
@@ -111,7 +110,7 @@ namespace WebSite.Controllers
             ViewData["UpdateMovie"] = _localizer["UpdateMovie"];
             ViewData["BackToList"] = _localizer["BackToList"];
             ViewData["Save"] = _localizer["Save"];
-            ViewData["Title"] = _localizer["Title"];
+            ViewData["MovieTitle"] = _localizer["MovieTitle"];
             ViewData["Description"] = _localizer["Description"];
             ViewData["ImageURL"] = _localizer["ImageURL"];
             ViewData["CategoryId"] = _localizer["CategoryId"];

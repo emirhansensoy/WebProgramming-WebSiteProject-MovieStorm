@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WebSite.Models
+﻿namespace WebSite.Models
 {
     public class Movie
     {

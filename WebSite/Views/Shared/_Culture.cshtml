@@ -1,6 +1,4 @@
-﻿@using System.Globalization
-@using System.ComponentModel
-@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> locOptions
 
 @{
@@ -11,6 +9,6 @@
 
 <div>
     <form asp-action="CultureManagement" asp-controller="Home" method="post" asp-route-returnUrl="@returnUrl">
-        <select name="culture" asp-for="@culture.RequestCulture.UICulture.Name" asp-items="cultureList" onchange="this.form.submit();"></select>
+        <select name="culture" asp-for="@culture.RequestCulture.UICulture.Name" asp-items="cultureList" class="custom-select custom-select-sm" style="width:75px;"  onchange="this.form.submit();"></select>
     </form>
 </div>

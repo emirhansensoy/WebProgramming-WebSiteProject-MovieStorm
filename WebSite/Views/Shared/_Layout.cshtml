@@ -39,9 +39,6 @@
                                 <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="ListMovies">@_localizer["MovieList"]</a>
                             </li>
                         }
-                        <li class="nav-link">
-                            <partial name="_Culture" />
-                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -57,7 +54,14 @@
 
     <footer class="footer text-muted">
         <div class="container text-light">
-            &copy; 2021 - MovieStorm
+            <div class="row">
+                <div class="col-md-6">
+                    &copy; 2021 - MovieStorm
+                </div>
+                <div class="col-md-6 text-right">
+                    <partial name="_Culture" />
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.Localization;
 using WebSite.Data;
 using WebSite.Models;

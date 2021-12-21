@@ -12,7 +12,7 @@
         <form asp-action="AddMovie">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label>@ViewData["Title"]</label>
+                <label>@ViewData["MovieTitle"]</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
