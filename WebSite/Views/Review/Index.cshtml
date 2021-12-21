@@ -1,16 +1,14 @@
 ﻿@model MovieAndReviewsModel
 
-
 @{
-    ViewData["Title"] = "My Reviews";
+    ViewData["Title"] = ViewData["MyReviews"];
 }
-
 
 @if (!Model.Reviews.Any())
 {
     <div class="row">
         <div class="col-md-12" style="margin-top: 50px;">
-            <h5 class="text-light">You do not have any reviews.</h5>
+            <h5 class="text-light">@ViewData["NoReviews"]</h5>
         </div>
     </div>
 }
@@ -45,7 +43,7 @@ else
                                     </div>
                                     <div class="col-md-2">
                                         <a href="/Home/DeleteFromMyReviews/@y.Id" class="btn" style="width: 80px; height: 40px; margin-top: -5px; margin-left: 20px;">
-                                            <p style="margin-top: -6px;">Delete</p>
+                                            <p style="margin-top: -6px;">@ViewData["Delete"]</p>
                                         </a>
                                     </div>
                                 </div>

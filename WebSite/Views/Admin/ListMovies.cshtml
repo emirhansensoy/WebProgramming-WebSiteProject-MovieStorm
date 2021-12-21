@@ -1,35 +1,35 @@
 ﻿@model IEnumerable<WebSite.Models.Movie>
 
 @{
-    ViewData["Title"] = "ListMovies";
+    ViewData["Title"] = ViewData["ListMovies"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-light">ListMovies</h1>
+<h1 class="text-light">@ViewData["ListMovies"]</h1>
 
 <p>
-    <a asp-action="AddMovie">Add Movie</a>
+    <a asp-action="AddMovie">@ViewData["AddMovie"]</a>
 </p>
 <table class="table img-thumbnail" style="background-color: white">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @ViewData["Title"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @ViewData["Description"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImageURL)
+                @ViewData["ImageURL"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
+                @ViewData["CategoryId"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImdbRating)
+                @ViewData["ImdbRating"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MovieStormRating)
+                @ViewData["MovieStormRating"]
             </th>
             <th></th>
         </tr>
@@ -56,12 +56,12 @@
                 @Html.DisplayFor(modelItem => item.MovieStormRating)
             </td>
             <td>
-                <a asp-action="UpdateMovie" asp-route-id="@item.Id">Update</a>
+                <a asp-action="UpdateMovie" asp-route-id="@item.Id">@ViewData["Update"]</a>
                 <br />
-                <a asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">@ViewData["Details"]</a>
                 <br />
                 <a href="/Admin/DeleteMovie/@item.Id">                                 
-                    Delete
+                    @ViewData["Delete"]
                 </a>
             </td>
         </tr>

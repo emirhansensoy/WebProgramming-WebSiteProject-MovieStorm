@@ -1,55 +1,55 @@
 ﻿@model WebSite.Models.Movie
 
 @{
-    ViewData["Title"] = "AddMovie";
+    ViewData["Title"] = ViewData["AddMovie"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-light">AddMovie</h1>
+<h1 class="text-light">@ViewData["AddMovie"]</h1>
 <hr />
 <div class="row">
     <div class="col-md-4 text-light">
         <form asp-action="AddMovie">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label>@ViewData["Title"]</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label>@ViewData["Description"]</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImageURL" class="control-label"></label>
+                <label>@ViewData["ImageURL"]</label>
                 <input asp-for="ImageURL" class="form-control" />
                 <span asp-validation-for="ImageURL" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
+                <label>@ViewData["CategoryId"]</label>
                 <input asp-for="CategoryId" class="form-control" />
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImdbRating" class="control-label"></label>
+                <label>@ViewData["ImdbRating"]</label>
                 <input asp-for="ImdbRating" class="form-control" />
                 <span asp-validation-for="ImdbRating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MovieStormRating" class="control-label"></label>
+                <label>@ViewData["MovieStormRating"]</label>
                 <input asp-for="MovieStormRating" class="form-control" />
                 <span asp-validation-for="MovieStormRating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="@ViewData["Create"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="ListMovies">Back to List</a>
+    <a asp-action="ListMovies">@ViewData["BackToList"]</a>
 </div>
 
 @section Scripts {

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer _localizer
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,20 +25,23 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Movies">Movies</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Movies">@_localizer["Movies"]</a>
                         </li>
                         @if (User.IsInRole("User"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Review" asp-action="Index">My Reviews</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Review" asp-action="Index">@_localizer["MyReviews"]</a>
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="ListMovies">Movie List</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="ListMovies">@_localizer["MovieList"]</a>
                             </li>
                         }
+                        <li class="nav-link">
+                            <partial name="_Culture" />
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

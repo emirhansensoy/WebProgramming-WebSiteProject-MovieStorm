@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WebSite.Data;
 using WebSite.Models;
+using Microsoft.AspNetCore.Mvc.Localization;
 
-namespace WebSite.Areas.Admin.Controllers
+namespace WebSite.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
@@ -14,47 +15,63 @@ namespace WebSite.Areas.Admin.Controllers
         
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _context;
+        private readonly IHtmlLocalizer<AdminController> _localizer;
 
         public AdminController(RoleManager<IdentityRole> roleManager,
-                                        ApplicationDbContext context)
+                                        ApplicationDbContext context,
+                                        IHtmlLocalizer<AdminController> localizer)
         {
             _roleManager = roleManager;
             _context = context;
-        }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Role role)
-        {
-            var roleExist = await _roleManager.RoleExistsAsync(role.RoleName);
-
-            if(!roleExist)
-            {
-                var result = await _roleManager.CreateAsync(new IdentityRole(role.RoleName));
-            }
-
-            return View();
+            _localizer = localizer;
         }
 
         public IActionResult ListMovies()
         {
+            ViewData["AddMovie"] = _localizer["AddMovie"];
+            ViewData["ListMovies"] = _localizer["ListMovies"];
+            ViewData["Update"] = _localizer["Update"];
+            ViewData["Details"] = _localizer["Details"];
+            ViewData["Delete"] = _localizer["Delete"];
+            ViewData["Title"] = _localizer["Title"];
+            ViewData["Description"] = _localizer["Description"];
+            ViewData["ImageURL"] = _localizer["ImageURL"];
+            ViewData["CategoryId"] = _localizer["CategoryId"];
+            ViewData["ImdbRating"] = _localizer["ImdbRating"];
+            ViewData["MovieStormRating"] = _localizer["MovieStormRating"];
+
             return View(_context.Movies);
         }
 
         [HttpGet]
         public IActionResult AddMovie()
         {
+            ViewData["AddMovie"] = _localizer["AddMovie"];
+            ViewData["BackToList"] = _localizer["BackToList"];
+            ViewData["Title"] = _localizer["Title"];
+            ViewData["Description"] = _localizer["Description"];
+            ViewData["ImageURL"] = _localizer["ImageURL"];
+            ViewData["CategoryId"] = _localizer["CategoryId"];
+            ViewData["ImdbRating"] = _localizer["ImdbRating"];
+            ViewData["MovieStormRating"] = _localizer["MovieStormRating"];
+            ViewData["Create"] = _localizer["Create"];
+
             return View();
         }
 
         [HttpPost]
         public IActionResult AddMovie(Movie movie)
         {
+            ViewData["AddMovie"] = _localizer["AddMovie"];
+            ViewData["BackToList"] = _localizer["BackToList"];
+            ViewData["Title"] = _localizer["Title"];
+            ViewData["Description"] = _localizer["Description"];
+            ViewData["ImageURL"] = _localizer["ImageURL"];
+            ViewData["CategoryId"] = _localizer["CategoryId"];
+            ViewData["ImdbRating"] = _localizer["ImdbRating"];
+            ViewData["MovieStormRating"] = _localizer["MovieStormRating"];
+            ViewData["Create"] = _localizer["Create"];
+
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
@@ -73,6 +90,16 @@ namespace WebSite.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult UpdateMovie(int id) 
         {
+            ViewData["UpdateMovie"] = _localizer["UpdateMovie"];
+            ViewData["BackToList"] = _localizer["BackToList"];
+            ViewData["Save"] = _localizer["Save"];
+            ViewData["Title"] = _localizer["Title"];
+            ViewData["Description"] = _localizer["Description"];
+            ViewData["ImageURL"] = _localizer["ImageURL"];
+            ViewData["CategoryId"] = _localizer["CategoryId"];
+            ViewData["ImdbRating"] = _localizer["ImdbRating"];
+            ViewData["MovieStormRating"] = _localizer["MovieStormRating"];
+
             var model = _context.Movies.First(i=>i.Id == id);
             return View(model);
         }
@@ -81,6 +108,16 @@ namespace WebSite.Areas.Admin.Controllers
         [ValidateAntiForgeryToken] 
         public IActionResult UpdateMovie(int id, Movie movie)
         {
+            ViewData["UpdateMovie"] = _localizer["UpdateMovie"];
+            ViewData["BackToList"] = _localizer["BackToList"];
+            ViewData["Save"] = _localizer["Save"];
+            ViewData["Title"] = _localizer["Title"];
+            ViewData["Description"] = _localizer["Description"];
+            ViewData["ImageURL"] = _localizer["ImageURL"];
+            ViewData["CategoryId"] = _localizer["CategoryId"];
+            ViewData["ImdbRating"] = _localizer["ImdbRating"];
+            ViewData["MovieStormRating"] = _localizer["MovieStormRating"];
+
             var model = _context.Movies.First(x => x.Id == id); 
             
             model.CategoryId = movie.CategoryId;
