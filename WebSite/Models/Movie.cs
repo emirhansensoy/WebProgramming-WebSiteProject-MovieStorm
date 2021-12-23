@@ -12,8 +12,8 @@
 
         public int CategoryId { get; set; }
 
-        public float ImdbRating { get; set; }
+        public double ImdbRating { get; set; }
 
-        public float MovieStormRating { get; set; }
+        public double MovieStormRating { get; set; }
     }
 }

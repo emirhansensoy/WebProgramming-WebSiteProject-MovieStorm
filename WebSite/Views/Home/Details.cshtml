@@ -18,9 +18,33 @@
                     <div class="card-body">
                         <h5 class="card-title">@Model.Movie.Title</h5>
                         <p class="card-text">@Model.Movie.Description</p>
-                        <p class="card-text">
-                            @Model.Movie.CategoryId
+                        <p class="card-text text-muted">
+                            @ViewData["Category"]: @Model.Categories.First(i => i.Id == Model.Movie.CategoryId).Name
                         </p>
+                        @if (Model.Movie.ImdbRating == 0)
+                        {
+                            <p class="card-text text-muted">
+                                Imdb @ViewData["RatingOf"]: N/A
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text text-muted">
+                                Imdb @ViewData["RatingOf"]: @Math.Round(Model.Movie.ImdbRating,1)
+                            </p>
+                        }
+                        @if (Model.Movie.MovieStormRating == 0)
+                        {
+                            <p class="card-text text-muted">
+                                MovieStorm @ViewData["RatingOf"]: N/A
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text text-muted">
+                                MovieStorm @ViewData["RatingOf"]: @Math.Round(Model.Movie.MovieStormRating,1)
+                            </p>
+                        }
                     </div>
                 </div>
             </div>

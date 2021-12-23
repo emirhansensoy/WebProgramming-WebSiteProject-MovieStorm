@@ -13,6 +13,6 @@ namespace WebSite.Models
 
         public string Comment { get; set; }
 
-        public float Rating { get; set; }
+        public int Rating { get; set; }
     }
 }

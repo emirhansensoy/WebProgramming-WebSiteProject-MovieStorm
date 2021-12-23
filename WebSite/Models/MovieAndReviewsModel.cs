@@ -8,5 +8,6 @@ namespace WebSite.Models
         public IList<Movie> Movies { get; set; }
         public Review Review { get; set; }
         public IList<Review> Reviews { get; set; }
+        public IList<Category> Categories { get; set; }
     }
 }

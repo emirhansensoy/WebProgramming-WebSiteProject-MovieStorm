@@ -19,7 +19,9 @@ else
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 text-right">
-                    <img src="/img/@x.ImageURL" alt="" class="img-thumbnail" style="width: 13rem; margin-bottom: 75px" />
+                    <a asp-action="Details" asp-controller="Home" asp-route-id="@x.Id">
+                        <img src="/img/@x.ImageURL" alt="" class="img-thumbnail" style="width: 13rem; margin-bottom: 75px" />
+                    </a>
                 </div>
                 <div class="col-md-9 text-left">
                     @foreach (var y in Model.Reviews)

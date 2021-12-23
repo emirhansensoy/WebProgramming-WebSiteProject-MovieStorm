@@ -123,6 +123,9 @@
   <data name="AboutMovieStormContent" xml:space="preserve">
     <value>MovieStorm is a site that gives you the opportunity to rate your favorite or most hated movies!</value>
   </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
   </data>
@@ -136,6 +139,9 @@
     <value>-This movie has no reviews.</value>
   </data>
   <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="RatingOf" xml:space="preserve">
     <value>Rating</value>
   </data>
   <data name="Reviews" xml:space="preserve">

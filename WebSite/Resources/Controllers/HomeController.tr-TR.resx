@@ -121,7 +121,10 @@
     <value>MovieStorm hakkında:</value>
   </data>
   <data name="AboutMovieStormContent" xml:space="preserve">
-    <value>MovieStorm, size favori veya en nefret ettiğiniz uygulamaları oylama fırsatı veren bir sitedir!</value>
+    <value>MovieStorm, size en sevdiğiniz veya en nefret ettiğiniz filmleri derecelendirme fırsatı veren bir sitedir!</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategori</value>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>Yorum</value>
@@ -136,7 +139,10 @@
     <value>-Bu film için hiç inceleme yok.</value>
   </data>
   <data name="Rating" xml:space="preserve">
-    <value>Değerlendirme</value>
+    <value>Puan</value>
+  </data>
+  <data name="RatingOf" xml:space="preserve">
+    <value>Puanı</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>İncelemeler</value>

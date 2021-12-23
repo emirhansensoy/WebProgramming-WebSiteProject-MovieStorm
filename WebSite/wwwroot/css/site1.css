@@ -11,6 +11,11 @@ a.navbar-brand {
     background-color: #424242;
 }
 
+.list-group-item-dark:active {
+    background-color: #2b2b2b;
+    color: #2b2b2b;
+}
+
 .list-group-item:active {
     background-color: #2b2b2b;
     color: #2b2b2b;
