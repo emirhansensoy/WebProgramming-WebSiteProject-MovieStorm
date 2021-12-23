@@ -79,8 +79,8 @@ namespace WebSite.Controllers
         
         public IActionResult DeleteMovie(int id)
         {
-            var _movie = _context.Movies.Find(id);
-            _context.Movies.Remove(_movie);
+            var movie = _context.Movies.Find(id);
+            _context.Movies.Remove(movie);
             _context.SaveChanges();
 
             return RedirectToAction("ListMovies", "Admin");

@@ -42,22 +42,24 @@ namespace WebSite
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
+            services.Configure<RequestLocalizationOptions>(
+                            opt =>
+                            {
+                                var supportedCultures = new List<CultureInfo>
+                                {
+                                    new CultureInfo("en-US"),
+                                    new CultureInfo("tr-TR")
+                                };
+                                opt.DefaultRequestCulture = new RequestCulture("en-US");
+                                opt.SupportedCultures = supportedCultures;
+                                opt.SupportedUICultures = supportedCultures;
+                            });
+
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
-            services.Configure<RequestLocalizationOptions>(
-                opt =>
-                {
-                    var supportedCultures = new List<CultureInfo>
-                    {
-                        new CultureInfo("en-US"),
-                        new CultureInfo("tr-TR")
-                    };
-                    opt.DefaultRequestCulture = new RequestCulture("en-US");
-                    opt.SupportedCultures = supportedCultures;
-                    opt.SupportedUICultures = supportedCultures;
-                });
+            
 
             services.Configure<IdentityOptions>(options =>
 	        {
