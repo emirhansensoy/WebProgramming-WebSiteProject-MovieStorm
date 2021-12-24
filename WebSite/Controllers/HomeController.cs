@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
@@ -31,11 +32,16 @@ namespace WebSite.Controllers
 
         public IActionResult Movies(int? id)
         {
-            var movies = _context.Movies.ToList();
+            var movies = new List<Movie>();
 
-            if(id!=null)
+            if (_context.Movies.Any())
             {
-                movies = movies.Where(i => i.CategoryId == id).ToList();
+                movies = _context.Movies.ToList();
+
+                if(id != null)
+                {
+                    movies = movies.Where(i => i.CategoryId == id).ToList();
+                }
             }
 
             return View(movies);
@@ -54,7 +60,7 @@ namespace WebSite.Controllers
             ViewData["Category"] = _localizer["Category"];
             ViewData["RatingOf"] = _localizer["RatingOf"];
 
-            double MSRating = 0;
+            double msRating = 0;
             int sum = 0;
             if (_context.Reviews.Any(i => i.MovieId == id))
             {
@@ -62,10 +68,11 @@ namespace WebSite.Controllers
                 {
                     sum = sum + item.Rating;
                 }
-                MSRating = (double)sum / (double)_context.Reviews.Count(i => i.MovieId == id);
+                msRating = (double)sum / (double)_context.Reviews.Count(i => i.MovieId == id);
             }
-            
-            _context.Movies.First(i=>i.Id == id).MovieStormRating = MSRating;
+            msRating = Math.Round(msRating, 1);
+
+            _context.Movies.First(i=>i.Id == id).MovieStormRating = msRating;
             _context.SaveChanges();
 
             MovieAndReviewsModel model = new MovieAndReviewsModel();
@@ -98,7 +105,7 @@ namespace WebSite.Controllers
             _context.Reviews.Add(review);
             _context.SaveChanges();
             
-            double MSRating = 0;
+            double msRating = 0;
             int sum = 0;
             if (_context.Reviews.Any(i => i.MovieId == id))
             {
@@ -106,10 +113,11 @@ namespace WebSite.Controllers
                 {
                     sum = sum + item.Rating;
                 }
-                MSRating = (double)sum / (double)_context.Reviews.Count(i => i.MovieId == id);
+                msRating = (double)sum / (double)_context.Reviews.Count(i => i.MovieId == id);
             }
+            msRating = Math.Round(msRating, 1);
             
-            _context.Movies.First(i=>i.Id == id).MovieStormRating = MSRating;
+            _context.Movies.First(i=>i.Id == id).MovieStormRating = msRating;
             _context.SaveChanges();
 
             MovieAndReviewsModel model = new MovieAndReviewsModel();
@@ -143,7 +151,7 @@ namespace WebSite.Controllers
             _context.Reviews.Remove(review);
             _context.SaveChanges();
 
-            double MSRating = 0;
+            double msRating = 0;
             int sum = 0;
             if (_context.Reviews.Any(i => i.MovieId == review.MovieId))
             {
@@ -151,10 +159,11 @@ namespace WebSite.Controllers
                 {
                     sum += item.Rating;
                 }
-                MSRating = (double)sum / (double)_context.Reviews.Count(i => i.MovieId == review.MovieId);
+                msRating = (double)sum / (double)_context.Reviews.Count(i => i.MovieId == review.MovieId);
             }
+            msRating = Math.Round(msRating, 1);
             
-            _context.Movies.First(i=>i.Id == review.MovieId).MovieStormRating = MSRating;
+            _context.Movies.First(i=>i.Id == review.MovieId).MovieStormRating = msRating;
             _context.SaveChanges();
 
             return RedirectToAction("Details", "Home", new { id = review.MovieId });
@@ -166,7 +175,7 @@ namespace WebSite.Controllers
             _context.Reviews.Remove(review);
             _context.SaveChanges();
 
-            double MSRating = 0;
+            double msRating = 0;
             int sum = 0;
             if (_context.Reviews.Any(i => i.MovieId == review.MovieId))
             {
@@ -174,10 +183,11 @@ namespace WebSite.Controllers
                 {
                     sum += item.Rating;
                 }
-                MSRating = (double)sum / (double)_context.Reviews.Count(i => i.MovieId == review.MovieId);
+                msRating = (double)sum / (double)_context.Reviews.Count(i => i.MovieId == review.MovieId);
             }
+            msRating = Math.Round(msRating, 1);
             
-            _context.Movies.First(i=>i.Id == review.MovieId).MovieStormRating = MSRating;
+            _context.Movies.First(i=>i.Id == review.MovieId).MovieStormRating = msRating;
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Review");

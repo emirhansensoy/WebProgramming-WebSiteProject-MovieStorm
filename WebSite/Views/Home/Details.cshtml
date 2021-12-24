@@ -30,7 +30,7 @@
                         else
                         {
                             <p class="card-text text-muted">
-                                Imdb @ViewData["RatingOf"]: @Math.Round(Model.Movie.ImdbRating,1)
+                                Imdb @ViewData["RatingOf"]: @Model.Movie.ImdbRating
                             </p>
                         }
                         @if (Model.Movie.MovieStormRating == 0)
@@ -42,7 +42,7 @@
                         else
                         {
                             <p class="card-text text-muted">
-                                MovieStorm @ViewData["RatingOf"]: @Math.Round(Model.Movie.MovieStormRating,1)
+                                MovieStorm @ViewData["RatingOf"]: @Model.Movie.MovieStormRating
                             </p>
                         }
                     </div>
