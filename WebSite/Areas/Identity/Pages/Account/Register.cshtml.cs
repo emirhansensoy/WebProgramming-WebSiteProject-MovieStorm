@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using WebSite.Data;
 using WebSite.Models;
 
 namespace WebSite.Areas.Identity.Pages.Account
@@ -21,18 +19,18 @@ namespace WebSite.Areas.Identity.Pages.Account
         private readonly SignInManager<MyUser> _signInManager;
         private readonly UserManager<MyUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        public RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<MyUser> userManager,
             SignInManager<MyUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -77,7 +75,39 @@ namespace WebSite.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _userManager.AddToRoleAsync(user,"User").Wait();
+                    //_userManager.AddToRoleAsync(user,"User").Wait();
+
+                    if(Input.Email == "g191210040@sakarya.edu.tr")
+                    {
+                        if (!await _roleManager.RoleExistsAsync("Admin"))
+                        {
+                            var adminRole = new IdentityRole("Admin");
+                            var res = await _roleManager.CreateAsync(adminRole);
+                            if (res.Succeeded)
+                            {
+                                await _userManager.AddToRoleAsync(user, "Admin");
+                            }
+
+                        }
+                        else if (await _roleManager.RoleExistsAsync("Admin"))
+                        {
+                            await _userManager.AddToRoleAsync(user, "Admin");
+                        }
+                    }
+                    else if (!await _roleManager.RoleExistsAsync("User"))
+                    {
+                        var userRole = new IdentityRole("User");
+                        var res = await _roleManager.CreateAsync(userRole);
+                        if (res.Succeeded)
+                        {
+                            await _userManager.AddToRoleAsync(user, "User");
+                        }
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     TempData["Success"] = "Account Created Successfully! Please Log In.";
