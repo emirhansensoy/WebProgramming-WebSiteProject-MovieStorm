@@ -192,5 +192,18 @@ namespace WebSite.Controllers
 
             return RedirectToAction("Index", "Review");
         }
+
+        public IActionResult ApiPage()
+        {
+            ViewData["GetMovies"] = _localizer["GetMovies"];
+            ViewData["GetMovieById"] = _localizer["GetMovieById"];
+            ViewData["GetReviews"] = _localizer["GetReviews"];
+            ViewData["GetReviewById"] = _localizer["GetReviewById"];
+            ViewData["APIKeys"] = _localizer["APIKeys"];
+
+            int? portNumber = Request.Host.Port;
+            
+            return View(portNumber);
+        }
     }
 }

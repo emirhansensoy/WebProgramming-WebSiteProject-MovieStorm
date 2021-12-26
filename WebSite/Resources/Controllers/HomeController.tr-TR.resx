@@ -123,6 +123,9 @@
   <data name="AboutMovieStormContent" xml:space="preserve">
     <value>MovieStorm, size en sevdiğiniz veya en nefret ettiğiniz filmleri derecelendirme fırsatı veren bir sitedir!</value>
   </data>
+  <data name="APIKeys" xml:space="preserve">
+    <value>API Anahtarları</value>
+  </data>
   <data name="Category" xml:space="preserve">
     <value>Kategori</value>
   </data>
@@ -131,6 +134,18 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Sil</value>
+  </data>
+  <data name="GetMovieById" xml:space="preserve">
+    <value>GET Film </value>
+  </data>
+  <data name="GetMovies" xml:space="preserve">
+    <value>GET Filmler</value>
+  </data>
+  <data name="GetReviewById" xml:space="preserve">
+    <value>GET İnceleme</value>
+  </data>
+  <data name="GetReviews" xml:space="preserve">
+    <value>GET İncelemeler</value>
   </data>
   <data name="LeaveAReview" xml:space="preserve">
     <value>İnceleme bırak</value>

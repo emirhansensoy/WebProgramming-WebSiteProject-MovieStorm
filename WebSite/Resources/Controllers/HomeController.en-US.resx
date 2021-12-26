@@ -123,6 +123,9 @@
   <data name="AboutMovieStormContent" xml:space="preserve">
     <value>MovieStorm is a site that gives you the opportunity to rate your favorite or most hated movies!</value>
   </data>
+  <data name="APIKeys" xml:space="preserve">
+    <value>API Keys</value>
+  </data>
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
@@ -131,6 +134,18 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="GetMovieById" xml:space="preserve">
+    <value>GET Movie By Id:</value>
+  </data>
+  <data name="GetMovies" xml:space="preserve">
+    <value>GET Movies:</value>
+  </data>
+  <data name="GetReviewById" xml:space="preserve">
+    <value>GET Review By Id:</value>
+  </data>
+  <data name="GetReviews" xml:space="preserve">
+    <value>GET Reviews:</value>
   </data>
   <data name="LeaveAReview" xml:space="preserve">
     <value>Leave a review</value>

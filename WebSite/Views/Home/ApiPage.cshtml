@@ -1,0 +1,54 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "API";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string getMovies = "localhost:" + Model + "/api/Movies";
+    string getMovie = "localhost:" + Model + "/api/Movies/1";
+    string getReviews = "localhost:" + Model + "/api/Reviews";
+    string getReview = "localhost:" + Model + "/api/Reviews/1";
+}
+
+<div>
+    <h3 class="text-light">@ViewData["APIKeys"]</h3>
+    <hr />
+    <dl class="row text-light">
+        <dt class="col-sm-2" style="margin-top: 10px;">
+            @ViewData["GetMovies"]
+        </dt>
+        <dd class="col-sm-3">
+            <a class="nav-link text-light" asp-area="" asp-controller="Movies" asp-action="GetMovies">@getMovies</a>
+        </dd>
+        <dd class="col-sm-7"></dd>
+    </dl>
+    <dl class="row text-light">
+        <dt class="col-sm-2" style="margin-top: 10px;">
+            @ViewData["GetMovieById"]
+        </dt>
+        <dd class="col-sm-3">
+            <a class="nav-link text-light" asp-area="" asp-controller="Movies" asp-action="GetMovie" asp-route-id="1">@getMovie</a>
+        </dd>
+        <dd class="col-sm-7"></dd>
+    </dl>
+    <dl class="row text-light">
+        <dt class="col-sm-2" style="margin-top: 10px;">
+            @ViewData["GetReviews"]
+        </dt>
+        <dd class="col-sm-3">
+            <a class="nav-link text-light" asp-area="" asp-controller="Reviews" asp-action="GetReviews">@getReviews</a>
+        </dd>
+        <dd class="col-sm-7"></dd>
+    </dl>
+    <dl class="row text-light">
+        <dt class="col-sm-2" style="margin-top: 10px;">
+            @ViewData["GetReviewById"]
+        </dt>
+        <dd class="col-sm-3">
+            <a class="nav-link text-light" asp-area="" asp-controller="Reviews" asp-action="GetReview" asp-route-id="1">@getReview</a>
+        </dd>
+        <dd class="col-sm-7"></dd>
+    </dl>
+</div>
